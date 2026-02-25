@@ -1,5 +1,9 @@
 import process from 'process'
 import app from './src/app.js'
+import connectDB from './src/config/db.js'
+
+// Connexion à la BDD MongoDB
+connectDB()
 
 const PORT = process.env.PORT || 5000
 
