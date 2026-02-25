@@ -1,10 +1,14 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import quoteRoutes from './routes/quoteRoutes.js'
+import cors from 'cors'
 
 dotenv.config()
 
 const app = express()
+
+// Permet de gérer l'acceptation des CORS
+app.use(cors())
 
 // Body parser
 app.use(express.json())
