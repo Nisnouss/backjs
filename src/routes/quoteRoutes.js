@@ -1,5 +1,5 @@
 import express from 'express'
-import { createQuote, getRandomQuote } from '../controllers/quoteController.js'
+import { createQuote, deleteQuote, getAllQuotes, getRandomQuote, updateQuote } from '../controllers/quoteController.js'
 
 const router = express.Router()
 
@@ -10,7 +10,13 @@ const router = express.Router()
 // Une app qui fourni des phrases inspirantes
 router.get('/', getRandomQuote)
 
+router.get('/all', getAllQuotes)
+
 router.post('/', createQuote)
+
+router.delete('/:id', deleteQuote)
+
+router.put('/:id', updateQuote)
 
 // ThunderClient
 
