@@ -1,0 +1,27 @@
+{
+  "name": "backjs",
+  "version": "1.0.0",
+  "description": "Javascript permet de faire des sites/apps côté front.\r Cependant il existe un outil, qui permet d'utiliser les compétences js pour créer des projets back, cela asignifie donc que le code est bien executé côté serveur. \r -> Ici l'utilisateur n'a pas accès à vote code contrairement à js côté front.",
+  "homepage": "https://github.com/Nisnouss/backjs#readme",
+  "bugs": {
+    "url": "https://github.com/Nisnouss/backjs/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nisnouss/backjs.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.2.2"
+  }
+}
