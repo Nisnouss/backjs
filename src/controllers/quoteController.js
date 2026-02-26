@@ -1,4 +1,6 @@
-import Quote from "../models/quoteModels.js"
+import Quote from "../models/quoteModels.js";
+import { GoogleGenAI } from "@google/genai";
+import { z } from "zod";
 
 const defaultQuotes = [
     {quote: "Le succès c'est de passer d'échec en échec sans perdre son enthousiasme.", author: "A"},
@@ -93,6 +95,40 @@ export const updateQuote = async (req, res) => {
         res.status(200).json(updatedQuote)
     } catch (error) {
         console.error("Erreur de modification : ", error)
+        res.status(500).json({message: error.message})
+    }
+}
+
+export const getAiQuote = async(req, res) => {
+    try {
+        const ai = new GoogleGenAI({apiKey: process.env.GEMINI_API})
+
+        const quoteSchema = z.object({
+            quote: z.string(),
+            author: z.string()
+        })
+        const req = await ai.models.generateContent({
+            model: "gemini-2.5-flash-lite",
+            contents: "Donne moi une citation en français",
+            config : {
+                responseMimeType: "application/json",
+                responseJsonSchema: z.toJSONSchema(quoteSchema)
+            }
+        })
+
+        // Texte brute retourné par gemini
+        const jsonText = req.text
+
+        // On converti en JSON
+        const parsed = JSON.parse(jsonText)
+
+        // Validation avec zod
+        const validated = quoteSchema.parse(parsed)
+
+        res.json(validated)
+
+    } catch (error) {
+        console.error("Impossible de générer ", error)
         res.status(500).json({message: error.message})
     }
 }
