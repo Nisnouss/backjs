@@ -1,5 +1,6 @@
 import express from 'express'
 import { createQuote, deleteQuote, getAllQuotes, getRandomQuote, updateQuote } from '../controllers/quoteController.js'
+import { protect } from '../middlewares/authMiddleware.js'
 
 const router = express.Router()
 
@@ -12,11 +13,13 @@ router.get('/', getRandomQuote)
 
 router.get('/all', getAllQuotes)
 
-router.post('/', createQuote)
+//          route middleware, encoreMiddleware, etc, séparé par la virgule
+//                                                             à la fin c'est le CONTROLLER
+router.post('/', protect, createQuote)
 
-router.delete('/:id', deleteQuote)
+router.delete('/:id', protect, deleteQuote)
 
-router.put('/:id', updateQuote)
+router.put('/:id', protect, updateQuote)
 
 // ThunderClient
 

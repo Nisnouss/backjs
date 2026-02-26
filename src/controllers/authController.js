@@ -9,8 +9,11 @@ const generateToken = (id) => {
 }
 
 // Fonction pour enregistrer un utilisateur
-export const registerUser = async (req, res, next) => {
+export const registerUser = async (req, res) => {
     try {
+        if(!req.body){
+            return res.status(400).json({message: "Aucune donnée envoyée"})
+        }
         const {email, password} = req.body
 
         if(!email || !password){
@@ -43,8 +46,38 @@ export const registerUser = async (req, res, next) => {
         throw new Error("Données utilisateur invalides");
     } catch (error) {
         console.error('Enregistrement impossible: ', error)
-        return res.status(500)
+        return res.status(500).json({message: error.message})
     }
 }
 
 // Fonction pour se connecter en tant qu'utilisateur
+export const loginUser = async(req, res) => {
+    try {
+        if(!req.body){
+            return res.status(400).json({message: "Aucune donnée envoyée"})
+        }
+        const {email, password} = req.body
+
+        if(!email || !password){
+            res.status(400)
+            throw new Error("Veuillez fournir tous les champs");
+        }
+
+        // Vérifier l'email, on va utiliser +password car on a select: false dans le model
+        const user = await User.findOne({email}).select('+password')
+
+        // Vérifier le mot de passe
+        if(user && (await user.matchPassword(password))){
+            res.json({
+                _id: user._id,
+                email: user.email,
+                token: generateToken(user._id)
+            })
+        }
+        res.status(401)
+        throw new Error("Email ou mot de passe incorrect");
+    } catch (error) {
+        console.error('Connexion impossible :', error)
+        return res.status(500).json({message: error.message})
+    }
+}
