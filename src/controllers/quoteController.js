@@ -31,6 +31,7 @@ export const getRandomQuote = async (req, res) =>{
     }
 }
 
+
 export const getAllQuotes = async (req, res) => {
     try {
         const quotes = await Quote.find({})
@@ -38,6 +39,16 @@ export const getAllQuotes = async (req, res) => {
     } catch (error) {
         console.error("Erreur de récupération ", error)
         res.status(500).json({message: "Erreur de récupération"})
+    }
+}
+
+export const getOneQuote = async (req, res) =>{
+    try{
+        const quote = await Quote.findById(req.params.id)
+        res.status(200).json(quote)
+
+    }catch(error){
+        console.error("Erreur de quote : ", error)
     }
 }
 
