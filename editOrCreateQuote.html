@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier, créer ou supprimer</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <div>
+        <button id="delete">Supprimer la citation</button>
+        <h2>Modifier la citation</h2>
+        <form action="#" method="post">
+            <input type="text" name="updQuote" id="updQuote" placeholder="Saisir la citation" required>
+            <input type="text" name="updAuthor" id="updAuthor" placeholder="Saisir l'auteur" required>
+            <button id="update">Modifier</button>
+        </form>
+    </div>
+    <h2>Ajouter une citation</h2>
+    <form action="#" method="post">
+        <input type="text" name="addQuote" id="addQuote" placeholder="Saisir la citation" required>
+        <input type="text" name="addAuthor" id="addAuthor" placeholder="Saisir l'auteur" required>
+        <button id="create">Créer</button>
+    </form>
+    <script src="editOrCreateQuote.js"></script>
+</body>
+</html>

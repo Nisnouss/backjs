@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+:root {
+    --bg: #ffffff;
+    --text: #111827;
+    --border: #d1d5db; /* Gris moyen pour la visibilité */
+    --focus: #4f46e5;  /* Bleu pour l'interaction */
+    --subtext: #6b7280;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    max-width: 480px;
+    margin: 60px auto;
+    padding: 20px;
+}
+
+h2 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #f3f4f6;
+    padding-bottom: 8px;
+}
+
+/* --- Zones de saisie bien visibles --- */
+input {
+    width: 100%;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    border: 1.5px solid var(--border); /* Bordure plus épaisse */
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #ffffff;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+/* Effet au clic pour bien voir quel input est actif */
+input:focus {
+    outline: none;
+    border-color: var(--focus);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+}
+
+input::placeholder {
+    color: #9ca3af;
+}
+
+/* --- Boutons --- */
+button {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+#create {
+    background-color: var(--text);
+    color: white;
+}
+
+#update {
+    background-color: #f3f4f6;
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+#delete {
+    background: none;
+    color: #dc2626;
+    border: 1px solid #fee2e2;
+    margin-bottom: 30px;
+}
+
+#delete:hover {
+    background-color: #fef2f2;
+}
+
+/* Conteneurs */
+div, form {
+    margin-bottom: 40px;
+}
